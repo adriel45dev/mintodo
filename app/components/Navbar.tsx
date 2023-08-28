@@ -7,7 +7,6 @@ import { useState } from "react";
 export default function Navbar() {
   const [dropDownLogin, setDropDownLogin] = useState(false);
   return (
-    // max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4
     <>
       {dropDownLogin && (
         <Login state={dropDownLogin} onClick={setDropDownLogin} />
