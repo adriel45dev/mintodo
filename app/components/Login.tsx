@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   state: boolean;
@@ -72,8 +73,8 @@ export default function Login({ state, onClick }: Props) {
                 </li>
 
                 <li>
-                  <a
-                    href="#"
+                  <Link
+                    href={"./tasks"}
                     className="flex items-center p-3 text-base font-bold  rounded-lg group hover:shadow bg-gray-600 hover:bg-gray-500 text-white"
                   >
                     <Image
@@ -83,10 +84,13 @@ export default function Login({ state, onClick }: Props) {
                       height={16}
                       className="hover:rotate-90 duration-150"
                     />
-                    <span className="flex-1 ml-3 whitespace-nowrap">
+                    <span
+                      onClick={() => onClick(false)}
+                      className="flex-1 ml-3 whitespace-nowrap"
+                    >
                       Continue without an account.
                     </span>
-                  </a>
+                  </Link>
                 </li>
               </ul>
               <div>
