@@ -1,6 +1,6 @@
 import Footer from "./components/Footer";
-
 import Navbar from "./components/Navbar";
+import Provider from "./components/Provider";
 import "./globals.css";
 import type { Metadata } from "next";
 
@@ -17,13 +17,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-slate-900 select-none">
-        {/* NAVBAR */}
-
-        <Navbar />
-
-        {children}
-        {/* FOOTER */}
-        <Footer />
+        <Provider>
+          <Navbar />
+          {children}
+          <Footer />
+        </Provider>
       </body>
     </html>
   );

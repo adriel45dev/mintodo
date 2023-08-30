@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Login from "./components/Login";
 import { useState } from "react";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 export default function Home() {
   const [dropDownLogin, setDropDownLogin] = useState(false);

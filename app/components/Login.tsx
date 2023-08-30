@@ -1,12 +1,40 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { Provider, useEffect, useState, SetStateAction } from "react";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 interface Props {
   state: boolean;
   onClick: (value: boolean) => void;
 }
 
+type User = {
+  name: string;
+  id: string;
+};
+
 export default function Login({ state, onClick }: Props) {
+  const [providers, setProviders] = useState<Provider<User>[] | undefined>();
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    const setUpProviders = async () => {
+      const response = await getProviders();
+
+      if (response) {
+        const providers = Object.values(response).map(
+          (provider) => provider as unknown as Provider<User>
+        );
+
+        setProviders(providers);
+      } else {
+        setProviders(undefined);
+      }
+    };
+    setUpProviders();
+  }, []);
+
   return (
     <div
       className={`${
@@ -50,27 +78,31 @@ export default function Login({ state, onClick }: Props) {
                 account.
               </p>
               <ul className="my-4 space-y-3">
-                <li>
-                  <a
-                    href="#"
-                    className="flex items-center p-3 text-base font-bold  rounded-lg   group hover:shadow bg-gray-600 hover:bg-gray-500 text-white"
-                  >
-                    <Image
-                      src={"/images/google.svg"}
-                      alt="google"
-                      width={16}
-                      height={16}
-                      className="hover:rotate-90 duration-150"
-                    />
-                    <span className="flex-1 ml-3 whitespace-nowrap">
-                      Google
-                    </span>
+                {providers &&
+                  Object.values(providers).map((provider) => (
+                    <li key={provider.name}>
+                      <a
+                        onClick={() => signIn(provider.id)}
+                        href="#"
+                        className="flex items-center p-3 text-base font-bold  rounded-lg   group hover:shadow bg-gray-600 hover:bg-gray-500 text-white"
+                      >
+                        <Image
+                          src={"/images/google.svg"}
+                          alt="google"
+                          width={16}
+                          height={16}
+                          className="hover:rotate-90 duration-150"
+                        />
+                        <span className="flex-1 ml-3 whitespace-nowrap">
+                          Google
+                        </span>
 
-                    <span className="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium   rounded bg-gray-700 text-gray-400">
-                      Popular
-                    </span>
-                  </a>
-                </li>
+                        <span className="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-xs font-medium   rounded bg-gray-700 text-gray-400">
+                          Popular
+                        </span>
+                      </a>
+                    </li>
+                  ))}
 
                 <li>
                   <Link
