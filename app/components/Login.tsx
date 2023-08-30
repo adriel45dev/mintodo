@@ -9,13 +9,8 @@ interface Props {
   onClick: (value: boolean) => void;
 }
 
-type User = {
-  name: string;
-  id: string;
-};
-
 export default function Login({ state, onClick }: Props) {
-  const [providers, setProviders] = useState<Provider<User>[] | undefined>();
+  const [providers, setProviders] = useState<Provider<any>[] | undefined>();
   const { data: session } = useSession();
 
   useEffect(() => {
@@ -24,7 +19,7 @@ export default function Login({ state, onClick }: Props) {
 
       if (response) {
         const providers = Object.values(response).map(
-          (provider) => provider as unknown as Provider<User>
+          (provider) => provider as unknown as Provider<any>
         );
 
         setProviders(providers);
@@ -82,7 +77,9 @@ export default function Login({ state, onClick }: Props) {
                   Object.values(providers).map((provider) => (
                     <li key={provider.name}>
                       <a
-                        onClick={() => signIn(provider.id)}
+                        onClick={() => {
+                          signIn();
+                        }}
                         href="#"
                         className="flex items-center p-3 text-base font-bold  rounded-lg   group hover:shadow bg-gray-600 hover:bg-gray-500 text-white"
                       >
