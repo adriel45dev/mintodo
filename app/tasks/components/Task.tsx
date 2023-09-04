@@ -40,7 +40,7 @@ export default function Task({
         <p className={`${done && "line-through"}`}>{text}</p>
       </div>
 
-      <span className="text-sm ">28/12/1997</span>
+      <span className="text-sm ">Today</span>
 
       <DeleteIcon
         className="text-white w-8 h-8 hover:text-red-400 hover:scale-90"

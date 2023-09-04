@@ -1,6 +1,9 @@
 "use client";
+import Tooltip from "@/app/components/Tooltip";
 import Image from "next/image";
 import React, { useState } from "react";
+import RepeateIcon from "@/public/icons/RepeatIcon";
+import CalendarIcon from "@/public/icons/CalendarIcon";
 
 interface TaskInputProps {
   setInputTask: (value: string) => void;
@@ -21,10 +24,7 @@ export default function TaskInput({
 
   return (
     <div className="flex flex-col mx-auto w-full ">
-      <div
-        id="input"
-        className="group flex flex-row justify-between gap-3 items-center bg-slate-600 rounded-t-2xl h-full px-3 py-4"
-      >
+      <div className="group flex flex-row justify-between gap-3 items-center bg-slate-600 rounded-t-2xl h-full px-3 py-4">
         <Image
           src={"/images/login.png"}
           alt="task"
@@ -47,24 +47,13 @@ export default function TaskInput({
         className="flex flex-row justify-between items-center bg-slate-700 rounded-b-2xl h-full py-2 px-3"
       >
         <div className="flex flex-row gap-3">
-          <button>
-            <Image
-              src={"/images/calendar.svg"}
-              alt="calendar"
-              width={28}
-              height={28}
-              className="hover:scale-125"
-            />
-          </button>
-          <button>
-            <Image
-              src={"/images/repeat.svg"}
-              alt="calendar"
-              width={20}
-              height={20}
-              className="hover:scale-125"
-            />
-          </button>
+          <Tooltip message="Add due date">
+            <CalendarIcon className="text-white w-6 h-6 hover:text-green-500" />
+          </Tooltip>
+
+          <Tooltip message="Repeat">
+            <RepeateIcon className="text-white w-6 h-6 hover:text-green-500" />
+          </Tooltip>
         </div>
         <div>
           <button

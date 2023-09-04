@@ -82,7 +82,7 @@ export default function Tasks() {
   return (
     <section className="flex flex-col items-center space-y-4  min-h-screen">
       <Header />
-      <div className="flex flex-col items-center text-white w-full h-fit px-4 space-y-4">
+      <div className="flex flex-col items-center text-white w-full h-fit px-8 space-y-4">
         <TaskInput
           inputTask={inputTask}
           setInputTask={setInputTask}

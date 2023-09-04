@@ -13,7 +13,7 @@ export default function Navbar() {
       {dropDownLogin && (
         <Login state={dropDownLogin} onClick={setDropDownLogin} />
       )}
-      <header className="bg-slate-800 text-white rounded-lg shadow m-4">
+      <header className="bg-slate-800 text-white rounded-lg shadow mx-8 my-4">
         <nav className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 ">
           <div id="logo">
             <Link href={"/"}>
