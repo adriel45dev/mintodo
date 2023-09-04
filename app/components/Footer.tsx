@@ -11,22 +11,31 @@ export default function Footer() {
         </span>
         <ul className="flex flex-wrap items-center mt-3 text-sm font-mediumtext-gray-400 sm:mt-0 text-white">
           <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6 ">
-              About
+            <a
+              href="https://github.com/adriel45dev"
+              className="mr-4 hover:underline md:mr-6 "
+            >
+              GitHub
             </a>
           </li>
           <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6">
-              Privacy Policy
+            <a
+              href="https://www.linkedin.com/in/adrielalves45/"
+              className="mr-4 hover:underline md:mr-6"
+            >
+              Linkedin
             </a>
           </li>
           <li>
-            <a href="#" className="mr-4 hover:underline md:mr-6">
-              Licensing
+            <a
+              href="https://www.instagram.com/adriel.45/"
+              className="mr-4 hover:underline md:mr-6"
+            >
+              Instagram
             </a>
           </li>
           <li>
-            <a href="#" className="hover:underline">
+            <a href="http://adriel45dev.github.io/" className="hover:underline">
               Contact
             </a>
           </li>
