@@ -9,6 +9,7 @@ type Task = {
   text: string;
   repeat?: boolean;
   date?: string;
+  done?: boolean;
 };
 
 export default function Tasks() {
@@ -35,15 +36,47 @@ export default function Tasks() {
     }
   }, []);
 
-  const handleAddButton = () => {
+  const addTask = () => {
     if (inputTask) {
       if (tasks) {
-        setTasks((prevTask) => [...prevTask, { text: inputTask }]);
+        setTasks((prevTask) => [{ text: inputTask }, ...prevTask]);
       } else {
         setTasks([{ text: inputTask }]);
       }
       setInputTask("");
     }
+  };
+
+  const handleAddButton = () => {
+    addTask();
+  };
+
+  const handleDelete = (id: number) => {
+    const prevTask = [...tasks];
+    prevTask.splice(id, 1);
+    setTasks(prevTask);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key == "Enter") {
+      addTask();
+    }
+  };
+
+  const handleTaskStatus = (id: number) => {
+    setTasks((prevTask) => {
+      if (prevTask[id].done) {
+        return [
+          { ...prevTask[id], done: !prevTask[id].done },
+          ...prevTask.filter((_, i) => i != id),
+        ];
+      } else {
+        return [
+          ...prevTask.filter((_, i) => i != id),
+          { ...prevTask[id], done: !prevTask[id].done },
+        ];
+      }
+    });
   };
 
   return (
@@ -54,11 +87,21 @@ export default function Tasks() {
           inputTask={inputTask}
           setInputTask={setInputTask}
           onAddTask={handleAddButton}
+          onKeyDown={handleKeyDown}
         />
 
         <TaskList>
           {tasks &&
-            tasks.map((task) => <Task key={task.text} text={task.text} />)}
+            tasks.map((task, id) => (
+              <Task
+                key={id}
+                text={task.text}
+                onDelete={handleDelete}
+                onTaskStatus={handleTaskStatus}
+                done={task.done}
+                id={id}
+              />
+            ))}
         </TaskList>
       </div>
       <button

@@ -6,12 +6,14 @@ interface TaskInputProps {
   setInputTask: (value: string) => void;
   onAddTask: () => void;
   inputTask: string;
+  onKeyDown: (e: React.KeyboardEvent) => void;
 }
 
 export default function TaskInput({
   inputTask,
   setInputTask,
   onAddTask,
+  onKeyDown,
 }: TaskInputProps) {
   const handleInputTask = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e) setInputTask(e.target.value);
@@ -32,9 +34,10 @@ export default function TaskInput({
         />
         <input
           type="text"
-          className="text-gray-200 w-full h-full bg-slate-600 outline-none"
+          className="text-gray-200 w-full h-full bg-slate-600 outline-none border-none"
           placeholder="Add a task"
           onChange={handleInputTask}
+          onKeyDown={(e) => onKeyDown(e)}
           value={inputTask}
         />
       </div>
