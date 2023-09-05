@@ -1,3 +1,4 @@
+import Tooltip from "@/app/components/Tooltip";
 import DeleteIcon from "@/public/icons/DeleteIcon";
 
 interface PropsTask {
@@ -42,11 +43,13 @@ export default function Task({
 
       <span className="text-sm ">Today</span>
 
-      <DeleteIcon
-        className="text-white w-8 h-8 hover:text-red-400 hover:scale-90"
-        onClick={() => onDelete(id)}
-        alt="delete"
-      />
+      <Tooltip message="Delete">
+        <DeleteIcon
+          className="text-white w-6 h-6 hover:text-green-300 hover:scale-90 cursor-pointer"
+          onClick={() => onDelete(id)}
+          alt="delete"
+        />
+      </Tooltip>
     </div>
   );
 }

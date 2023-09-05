@@ -22,6 +22,8 @@ export default function TaskInput({
     if (e) setInputTask(e.target.value);
   };
 
+  const [repeatAction, setRepeatAction] = useState(false);
+
   return (
     <div className="flex flex-col mx-auto w-full ">
       <div className="group flex flex-row justify-between gap-3 items-center bg-slate-600 rounded-t-2xl h-full px-3 py-4">
@@ -30,11 +32,11 @@ export default function TaskInput({
           alt="task"
           width={32}
           height={32}
-          className="group-hover:rotate-45"
+          className="group-hover:rotate-45 "
         />
         <input
           type="text"
-          className="text-gray-200 w-full h-full bg-slate-600 outline-none border-none"
+          className=" text-gray-200 w-full h-full bg-slate-600 border-none "
           placeholder="Add a task"
           onChange={handleInputTask}
           onKeyDown={(e) => onKeyDown(e)}
@@ -48,13 +50,34 @@ export default function TaskInput({
       >
         <div className="flex flex-row gap-3">
           <Tooltip message="Add due date">
-            <CalendarIcon className="text-white w-6 h-6 hover:text-green-500" />
+            <CalendarIcon className="text-white w-6 h-6 hover:text-green-500 hover:scale-90" />
           </Tooltip>
 
-          <Tooltip message="Repeat">
-            <RepeateIcon className="text-white w-6 h-6 hover:text-green-500" />
-          </Tooltip>
+          <div
+            className="relative flex justify-center "
+            onClick={() => setRepeatAction(!repeatAction)}
+          >
+            <Tooltip message="Repeat">
+              <RepeateIcon
+                className={` w-6 h-6 hover:text-green-500 hover:scale-90 ${
+                  repeatAction ? "text-green-500" : "text-white"
+                }`}
+              />
+            </Tooltip>
+
+            <div
+              className={`${
+                repeatAction && "scale-100"
+              } absolute top-10 scale-0 transition-all rounded bg-gray-800 p-2 text-sm text-white flex flex-col z-10`}
+            >
+              <button className="hover:text-green-400">Daily</button>
+              <button className="hover:text-green-400">Weekly</button>
+              <button className="hover:text-green-400">Monthly</button>
+              <button className="hover:text-green-400">Yearly</button>
+            </div>
+          </div>
         </div>
+
         <div>
           <button
             className="bg-green-700 rounded-md px-3 py-1 hover:bg-green-800"
