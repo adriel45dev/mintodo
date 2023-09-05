@@ -7,6 +7,9 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Minimalist TO-DO",
   description: "Streamline your productivity",
+  icons: {
+    icon: "/public/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -18,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-slate-900 select-none">
         <Provider>
-          <Navbar />
+          {/* <Navbar /> */}
           {children}
           <Footer />
         </Provider>

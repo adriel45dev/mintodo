@@ -1,5 +1,6 @@
 "use client";
 import Header from "./components/Header";
+import Navbar from "./components/Navbar";
 import Task from "./components/Task";
 import TaskInput from "./components/TaskInput";
 import TaskList from "./components/TaskList";

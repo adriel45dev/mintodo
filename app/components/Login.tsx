@@ -34,7 +34,7 @@ export default function Login({ state, onClick }: Props) {
     <div
       className={`${
         state ? "block" : "hidden"
-      } fixed flex flex-col justify-center items-center w-screen h-screen backdrop-blur-sm bg-white/30 top-0 duration-150`}
+      } fixed flex flex-col justify-center items-center w-screen h-screen backdrop-blur-sm bg-white/30 top-0 duration-150 z-50`}
     >
       <div tabIndex={-1} aria-hidden="true" className="mx-3">
         <div className="relative w-full max-w-md max-h-full">

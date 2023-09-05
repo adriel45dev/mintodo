@@ -3,6 +3,7 @@ import Image from "next/image";
 import Login from "./components/Login";
 import { useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import Navbar from "./components/Navbar";
 
 export default function Home() {
   const [dropDownLogin, setDropDownLogin] = useState(false);
@@ -10,6 +11,7 @@ export default function Home() {
   return (
     <>
       <Login state={dropDownLogin} onClick={setDropDownLogin} />
+      <Navbar />
       <main className="flex flex-col justify-center items-center h-[calc(100vh-175px)] bg-slate-900 text-white">
         <div>
           <Image src="/images/loading.gif" alt="" width={32} height={32} />
