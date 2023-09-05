@@ -8,7 +8,8 @@ export const metadata: Metadata = {
   title: "Minimalist TO-DO",
   description: "Streamline your productivity",
   icons: {
-    icon: "/public/favicon.ico",
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
   },
 };
 
@@ -19,22 +20,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link
-          rel="icon"
-          href="/icon?<generated>"
-          type="image/<generated>"
-          sizes="<generated>"
-        />
-
-        <link
-          rel="apple-touch-icon"
-          href="/apple-icon?<generated>"
-          type="image/<generated>"
-          sizes="<generated>"
-        />
-      </head>
       <body className="bg-slate-900 select-none">
         <Provider>
           {/* <Navbar /> */}
